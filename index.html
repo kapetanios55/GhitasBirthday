@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Castle Shortlist</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+  :root{
+    --bg:#EEEDE6;
+    --surface:#FFFFFF;
+    --surface-2:#F6F4EC;
+    --text:#211F1C;
+    --text-muted:#66625A;
+    --border:#DBD7CA;
+    --border-strong:#C6C1B2;
+    --accent:#7C2334;
+    --accent-ink:#FFFFFF;
+    --brass:#8C6A24;
+    --cat-dining:#2F5568;
+    --cat-dining-bg:#E4EDF0;
+    --cat-themed:#8A6414;
+    --cat-themed-bg:#F3ECD9;
+    --cat-rental:#3C6B4C;
+    --cat-rental-bg:#E5EFE6;
+    --ok:#3C6B4C;
+    --est:#9A6B14;
+    --warn:#A6402B;
+    --warn-bg:#F4E2DC;
+    --shadow: 0 1px 2px rgba(30,25,15,0.06), 0 8px 24px -12px rgba(30,25,15,0.18);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#17181A;
+      --surface:#1E2023;
+      --surface-2:#242629;
+      --text:#EEEAE0;
+      --text-muted:#A8A29A;
+      --border:#34363A;
+      --border-strong:#44464A;
+      --accent:#D97D8C;
+      --accent-ink:#1B0C0F;
+      --brass:#D3AE5C;
+      --cat-dining:#8FBBD0;
+      --cat-dining-bg:#233038;
+      --cat-themed:#E0BE73;
+      --cat-themed-bg:#332A17;
+      --cat-rental:#8FC49E;
+      --cat-rental-bg:#1F3025;
+      --ok:#8FC49E;
+      --est:#E0BE73;
+      --warn:#E28A72;
+      --warn-bg:#3A241E;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px -12px rgba(0,0,0,0.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#17181A;
+    --surface:#1E2023;
+    --surface-2:#242629;
+    --text:#EEEAE0;
+    --text-muted:#A8A29A;
+    --border:#34363A;
+    --border-strong:#44464A;
+    --accent:#D97D8C;
+    --accent-ink:#1B0C0F;
+    --brass:#D3AE5C;
+    --cat-dining:#8FBBD0;
+    --cat-dining-bg:#233038;
+    --cat-themed:#E0BE73;
+    --cat-themed-bg:#332A17;
+    --cat-rental:#8FC49E;
+    --cat-rental-bg:#1F3025;
+    --ok:#8FC49E;
+    --est:#E0BE73;
+    --warn:#E28A72;
+    --warn-bg:#3A241E;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 28px -12px rgba(0,0,0,0.55);
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:"Public Sans", system-ui, -apple-system, sans-serif;
+    font-size:15px;
+    line-height:1.5;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px 64px;}
+
+  /* ---- Hero ---- */
+  .hero{
+    background:
+      radial-gradient(1100px 320px at 15% -20%, color-mix(in srgb, var(--accent) 22%, transparent), transparent),
+      linear-gradient(180deg, var(--surface-2), var(--bg));
+    border-bottom:1px solid var(--border);
+    padding:52px 24px 36px;
+  }
+  .hero-inner{max-width:1180px;margin:0 auto;}
+  .eyebrow{
+    font-family:"JetBrains Mono", monospace;
+    font-size:12px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--brass);
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--brass);display:inline-block;}
+  h1{
+    font-family:"Fraunces", Georgia, serif;
+    font-weight:600;
+    font-size:clamp(32px,4.4vw,52px);
+    line-height:1.05;
+    margin:14px 0 12px;
+    text-wrap:balance;
+    letter-spacing:-0.01em;
+  }
+  .hero p.sub{
+    max-width:620px;
+    color:var(--text-muted);
+    font-size:16px;
+    margin:0 0 28px;
+  }
+  .stat-row{display:flex;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;max-width:760px;}
+  .stat{flex:1;background:var(--surface);padding:16px 18px;}
+  .stat .num{
+    font-family:"JetBrains Mono", monospace;
+    font-size:22px;
+    font-weight:600;
+    font-variant-numeric:tabular-nums;
+    color:var(--text);
+  }
+  .stat .lbl{font-size:12px;color:var(--text-muted);margin-top:2px;}
+
+  /* ---- Toolbar ---- */
+  .toolbar{
+    position:sticky;top:0;z-index:10;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+    padding:14px 24px;
+    display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;
+  }
+  .toolbar-inner{max-width:1180px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:10px;}
+  .toolbar-row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;}
+  .filter-group{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .filter-group .group-label{font-size:12px;font-weight:600;color:var(--text-muted);margin-right:2px;}
+  .pills{display:flex;gap:8px;flex-wrap:wrap;}
+  .pill{
+    font-family:"Public Sans";
+    font-size:13px;font-weight:600;
+    padding:7px 14px;border-radius:999px;
+    border:1px solid var(--border-strong);
+    background:var(--surface);
+    color:var(--text-muted);
+    cursor:pointer;
+    transition:background .15s,color .15s,border-color .15s;
+  }
+  .pill[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent);}
+  .pill .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;}
+  .sortwrap{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted);}
+  select{
+    font-family:"Public Sans";font-size:13px;font-weight:600;color:var(--text);
+    background:var(--surface);border:1px solid var(--border-strong);border-radius:8px;
+    padding:7px 10px;
+  }
+
+  /* ---- Grid ---- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:18px;
+    padding-top:26px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    box-shadow:var(--shadow);
+    padding:20px 20px 18px;
+    display:flex;flex-direction:column;gap:14px;
+    position:relative;
+  }
+  .card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+  .badge-stack{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;}
+  .venue-name{
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    font-size:19px;
+    line-height:1.2;
+    margin:0 0 4px;
+    text-wrap:balance;
+  }
+  .venue-loc{font-size:13px;color:var(--text-muted);}
+  .cat-badge{
+    font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;
+    padding:4px 9px;border-radius:6px;white-space:nowrap;flex-shrink:0;
+  }
+  .cat-dining{color:var(--cat-dining);background:var(--cat-dining-bg);}
+  .cat-themed{color:var(--cat-themed);background:var(--cat-themed-bg);}
+  .cat-rental{color:var(--cat-rental);background:var(--cat-rental-bg);}
+
+  .food-badge{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:12px;font-weight:700;
+    padding:5px 10px;border-radius:7px;
+    border:1px solid transparent;
+  }
+  .food-no{color:var(--warn);background:var(--warn-bg);border-color:color-mix(in srgb, var(--warn) 35%, transparent);}
+  .food-yes{color:var(--ok);background:var(--cat-rental-bg);}
+  .food-unclear{color:var(--text-muted);background:var(--surface-2);border-color:var(--border);}
+
+  .kv-row{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:12px 0;}
+  .kv .k{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);margin-bottom:2px;}
+  .kv .v{font-size:13.5px;font-weight:600;}
+
+  .price-block{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;}
+  .price-line{display:flex;justify-content:space-between;align-items:baseline;gap:10px;}
+  .price-line + .price-line{margin-top:6px;}
+  .price-label{font-size:12.5px;color:var(--text-muted);}
+  .price-val{
+    font-family:"JetBrains Mono", monospace;
+    font-weight:600;font-size:14.5px;
+    font-variant-numeric:tabular-nums;
+    white-space:nowrap;
+  }
+  .price-status{
+    display:flex;align-items:center;gap:6px;
+    font-size:11.5px;margin-top:8px;color:var(--text-muted);
+  }
+  .price-status .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+  .dot-ok{background:var(--ok);}
+  .dot-est{background:var(--est);}
+  .dot-no{background:var(--warn);}
+
+  .highlight{font-size:13.5px;color:var(--text-muted);flex:1;}
+  .highlight b{color:var(--text);font-weight:600;}
+
+  .site-link{
+    font-family:"JetBrains Mono", monospace;
+    font-size:12px;
+    color:var(--cat-dining);
+    text-decoration:none;
+    word-break:break-all;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .site-link:hover{text-decoration:underline;}
+  .card-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:auto;}
+  .avail{font-size:12px;color:var(--text-muted);max-width:60%;}
+  .visit{
+    font-family:"Public Sans";font-weight:700;font-size:13px;
+    color:var(--accent-ink);background:var(--accent);
+    padding:8px 14px;border-radius:8px;text-decoration:none;white-space:nowrap;
+    box-shadow:0 1px 0 rgba(0,0,0,0.05);
+  }
+  .visit:hover{filter:brightness(1.08);}
+
+  /* ---- Section dividers within notes ---- */
+  .notes{margin-top:56px;border-top:1px solid var(--border);padding-top:36px;}
+  .notes h2{
+    font-family:"Fraunces", serif;font-weight:600;font-size:24px;margin:0 0 22px;
+  }
+  .notes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px;margin-bottom:36px;}
+  .notes-grid h3{
+    font-family:"JetBrains Mono", monospace;
+    font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--brass);margin:0 0 8px;font-weight:600;
+  }
+  .notes-grid p{margin:0;font-size:13.5px;color:var(--text-muted);}
+
+  .sources{font-size:12.5px;color:var(--text-muted);}
+  .sources summary{cursor:pointer;font-weight:600;color:var(--text);margin-bottom:10px;}
+  .sources ul{margin:0;padding-left:18px;columns:2;column-gap:32px;}
+  .sources li{margin-bottom:6px;break-inside:avoid;}
+  .sources a{color:var(--text-muted);}
+
+  footer.tail{margin-top:44px;font-size:12px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:18px;}
+
+  @media (max-width:640px){
+    .kv-row{grid-template-columns:1fr 1fr;}
+    .sources ul{columns:1;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">40th birthday · dinner for 40 · October</div>
+    <h1>The Castle Shortlist</h1>
+    <p class="sub">Twelve UK castles surveyed for a 40th-birthday dinner, sized for 40 guests, any week in October. Ranges from a dry-hire hall an hour from London to a full weekend buyout in Scotland.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="num">12</div><div class="lbl">venues surveyed</div></div>
+      <div class="stat"><div class="num">£100–£500</div><div class="lbl">per head, dinner only</div></div>
+      <div class="stat"><div class="num">7 counties</div><div class="lbl">England &amp; Scotland</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="toolbar-row">
+      <div class="pills filter-group" id="catPills">
+        <span class="group-label">Type</span>
+        <button class="pill" data-filter="all" aria-pressed="true">All</button>
+        <button class="pill" data-filter="dining" aria-pressed="false"><span class="dot" style="background:var(--cat-dining)"></span>Private dinner hire</button>
+        <button class="pill" data-filter="themed" aria-pressed="false"><span class="dot" style="background:var(--cat-themed)"></span>Themed dining</button>
+        <button class="pill" data-filter="rental" aria-pressed="false"><span class="dot" style="background:var(--cat-rental)"></span>Whole-castle rental</button>
+      </div>
+      <div class="sortwrap">
+        <label for="sortSel">Sort by</label>
+        <select id="sortSel">
+          <option value="price">Price per head (low → high)</option>
+          <option value="distance">Distance from London</option>
+          <option value="az">Name (A–Z)</option>
+        </select>
+      </div>
+    </div>
+    <div class="toolbar-row">
+      <div class="pills filter-group" id="countryPills">
+        <span class="group-label">Country</span>
+        <button class="pill" data-country="all" aria-pressed="true">All</button>
+        <button class="pill" data-country="England" aria-pressed="false">England</button>
+        <button class="pill" data-country="Scotland" aria-pressed="false">Scotland</button>
+      </div>
+      <span class="group-label" id="resultCount"></span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="grid" id="grid"></div>
+
+  <div class="notes">
+    <h2>Before you enquire</h2>
+    <div class="notes-grid">
+      <div>
+        <h3>Why October works</h3>
+        <p>October sits between the summer wedding season and Christmas party bookings, so most of these venues have realistic availability for a Friday or Saturday — but castle wedding calendars fill 9–12 months out, so enquiring 6–8 weeks ahead is cutting it close for the popular weekend dates. Weekdays are far easier to secure on short notice.</p>
+      </div>
+      <div>
+        <h3>Two different products</h3>
+        <p>"Private dinner hire" venues rent a room or wing for an evening — you or a caterer brings the meal. "Whole-castle rental" venues are booked as a self-contained house party, usually a 2–3 night minimum, with the dinner cooked in-house for whoever is staying. Decide which one your friend actually wants before requesting quotes.</p>
+      </div>
+      <div>
+        <h3>Reading the prices</h3>
+        <p>Figures marked with a green dot are rates published on the venue's own site or a booking platform. Amber-dot figures are estimates built from comparable venues, since most castles price events bespoke and only quote after a call — treat those as a starting point for negotiation, not a number to budget to exactly.</p>
+      </div>
+      <div>
+        <h3>What's missing from a quote</h3>
+        <p>Venue hire rarely includes catering, drinks, flowers, entertainment or a marquee if the dining room is smaller than your group. Ask each venue for an all-in quote for 40 covers rather than the bare hire fee, and confirm whether VAT and a discretionary service charge are already included.</p>
+      </div>
+      <div>
+        <h3>Is the food included?</h3>
+        <p>Every card carries a food badge for exactly this. <b style="color:var(--warn)">Food not included</b> means the figure is a venue-hire fee with catering costed separately (the per-head estimate already adds a catering guess on top, but it's not a venue quote). <b style="color:var(--ok)">Food included</b> means the published price is genuinely all-in. <b>Food not confirmed</b> means the venue has no published rate at all, so I can't tell you either way — ask directly.</p>
+      </div>
+    </div>
+
+    <details class="sources">
+      <summary>Sources checked (12)</summary>
+      <ul id="sourceList"></ul>
+    </details>
+  </div>
+
+  <footer class="tail">Researched September 2026 from publicly available venue pages. Prices, capacities and availability change — always confirm directly with the venue before booking.</footer>
+</div>
+
+<script>
+  const venues = [
+    {
+      name:"Hertford Castle",
+      loc:"Hertford, Hertfordshire",
+      country:"England",
+      distanceKm:35, distance:"35 km · ~40 min by train from Moorgate",
+      cat:"dining",
+      capacity:"Up to 50 seated (Salisbury Room), dry-hire",
+      priceLow:115, priceHigh:145,
+      priceNote:"Confirmed venue hire (£450/hr, 4-hr Sat minimum = £1,800) + estimated external catering",
+      total:"≈ £4,800–£5,800 for 40",
+      confirmed:true,
+      food:"no",
+      foodNote:"Food NOT included — this is a dry-hire room only; you book and pay a caterer separately",
+      avail:"Dry-hire — bring your own caterer; good October weekday availability",
+      highlight:"The closest option to London and the only one with a fully published rate card. You supply the caterer and drinks, which keeps costs predictable.",
+      url:"https://www.hertfordcastle.co.uk/private-hire/",
+      urlLabel:"hertfordcastle.co.uk"
+    },
+    {
+      name:"Leeds Castle — Maiden's Tower",
+      loc:"near Maidstone, Kent",
+      country:"England",
+      distanceKm:64, distance:"64 km · ~1h10 by train + taxi",
+      cat:"dining",
+      capacity:"Exclusive use, 40-guest minimum, 5 en-suite bedrooms included",
+      priceLow:106, priceHigh:220,
+      priceNote:"Published day-rate from £106pp; bespoke evening dinner package quoted on enquiry",
+      total:"≈ £4,240–£8,800 for 40",
+      confirmed:true,
+      food:"partial",
+      foodNote:"Food PARTLY included — the £106pp day-rate covers lunch; a proper evening dinner is a separate package, confirm it includes food when you enquire",
+      avail:"Enquire — October is outside peak wedding season",
+      highlight:"A genuine private tower on Castle Island, with its own garden and five bedrooms thrown in — good if a few of you want to stay over.",
+      url:"https://www.leeds-castle.com/hire-dining/private-parties/",
+      urlLabel:"leeds-castle.com"
+    },
+    {
+      name:"Hever Castle",
+      loc:"Edenbridge, Kent",
+      country:"England",
+      distanceKm:48, distance:"48 km · ~50 min by train + taxi",
+      cat:"dining",
+      capacity:"Great Hall: 40 seated · Astor Wing: 60 seated / 80 standing",
+      priceLow:150, priceHigh:250,
+      priceNote:"Price on application — estimate based on comparable Kent castle venues",
+      total:"≈ £6,000–£10,000 for 40",
+      confirmed:false,
+      food:"unclear",
+      foodNote:"Food status NOT confirmed — no published rate at all; ask whether their quote is room-only or includes the meal",
+      avail:"Enquire directly for October dates",
+      highlight:"Anne Boleyn's childhood home. The Great Hall seats exactly 40, and a private guided tour of the castle can be added to the evening.",
+      url:"https://www.hevercastle.co.uk/venue-hire/private-parties/",
+      urlLabel:"hevercastle.co.uk"
+    },
+    {
+      name:"Farnham Castle",
+      loc:"Farnham, Surrey",
+      country:"England",
+      distanceKm:66, distance:"66 km · ~55 min by train from Waterloo",
+      cat:"dining",
+      capacity:"Winchester Suite &amp; Library — private dining rooms",
+      priceLow:100, priceHigh:180,
+      priceNote:"Price on application — estimate based on comparable heritage venues of this size",
+      total:"≈ £4,000–£7,200 for 40",
+      confirmed:false,
+      food:"unclear",
+      foodNote:"Food status NOT confirmed — no published rate at all; ask whether their quote is room-only or includes the meal",
+      avail:"Enquire directly for October dates",
+      highlight:"Smaller and less grand than the Kent castles, which tends to mean an easier calendar and a friendlier price for a 40th.",
+      url:"https://www.farnhamcastle.com/private-hire/",
+      urlLabel:"farnhamcastle.com"
+    },
+    {
+      name:"Sudeley Castle",
+      loc:"Winchcombe, Gloucestershire",
+      country:"England",
+      distanceKm:150, distance:"150 km · ~2h30 by car",
+      cat:"dining",
+      capacity:"Orangery, Coach House &amp; Library across a 1,200-acre estate",
+      priceLow:150, priceHigh:250,
+      priceNote:"Price on application — estimate based on comparable Cotswolds castle venues",
+      total:"≈ £6,000–£10,000 for 40",
+      confirmed:false,
+      food:"unclear",
+      foodNote:"Food status NOT confirmed — no published rate at all; ask whether their quote is room-only or includes the meal",
+      avail:"Enquire directly for October dates",
+      highlight:"The former home of Catherine Parr, set in the Cotswolds — worth it if the group is happy to make a weekend of the drive.",
+      url:"https://sudeleycastle.co.uk/private-hire",
+      urlLabel:"sudeleycastle.co.uk"
+    },
+    {
+      name:"Eastnor Castle",
+      loc:"near Ledbury, Herefordshire",
+      country:"England",
+      distanceKm:200, distance:"200 km · ~2h45 by car",
+      cat:"dining",
+      capacity:"State Dining Room seats up to 80",
+      priceLow:161, priceHigh:231,
+      priceNote:"Confirmed whole-venue hire £3,240 (evening session) + estimated catering",
+      total:"≈ £6,400–£9,200 for 40",
+      confirmed:true,
+      food:"no",
+      foodNote:"Food NOT included — the £3,240 fee is the room only; catering is booked and paid separately",
+      avail:"Enquire — in-house event team handles entertainment add-ons",
+      highlight:"One of the few venues with a genuinely published hire fee. The in-house team will also arrange a string quartet, casino tables or fireworks.",
+      url:"https://eastnorcastle.com/party/",
+      urlLabel:"eastnorcastle.com"
+    },
+    {
+      name:"Peckforton Castle",
+      loc:"Tarporley, Cheshire",
+      country:"England",
+      distanceKm:270, distance:"270 km · ~3h by car",
+      cat:"dining",
+      capacity:"Private dining rooms at the 1851 Restaurant, castle hotel",
+      priceLow:130, priceHigh:200,
+      priceNote:"Price on application — estimate based on comparable castle-hotel dining",
+      total:"≈ £5,200–£8,000 for 40",
+      confirmed:false,
+      food:"unclear",
+      foodNote:"Food status NOT confirmed — no published rate at all; ask whether their quote is room-only or includes the meal",
+      avail:"Enquire directly for October dates",
+      highlight:"A genuine 19th-century mock-medieval castle-hotel, so the whole group can also book rooms and turn it into a weekend.",
+      url:"https://www.peckfortoncastle.co.uk/venue-offers/book-direct-offer/",
+      urlLabel:"peckfortoncastle.co.uk"
+    },
+    {
+      name:"Warwick Castle — Medieval Banquet",
+      loc:"Warwick, Warwickshire",
+      country:"England",
+      distanceKm:150, distance:"150 km · ~1h50 by train from Marylebone",
+      cat:"themed",
+      capacity:"Standard banquet caps at 30 guests; private buyout for 40 on request",
+      priceLow:100, priceHigh:130,
+      priceNote:"Estimate based on the standard per-head banquet rate — a private group of 40 is quoted separately",
+      total:"≈ £4,000–£5,200 for 40",
+      confirmed:false,
+      food:"yes",
+      foodNote:"Food IS included — the ticket price covers the arrival mead, three-course meal and two drinks",
+      avail:"Public banquet nights run on a fixed schedule; a private 40-cover sitting needs a direct enquiry",
+      highlight:"Mead on arrival, a three-course feast, roaming characters and no washing-up to plan — the fun, low-effort option rather than the elegant one.",
+      url:"https://www.warwick-castle.com/explore/events/themed-dining/medieval-banquet/",
+      urlLabel:"warwick-castle.com"
+    },
+    {
+      name:"Thornbury Castle",
+      loc:"South Gloucestershire",
+      country:"England",
+      distanceKm:180, distance:"180 km · ~2h by car",
+      cat:"rental",
+      capacity:"Whole castle, 26 bedrooms; dinner for up to 70",
+      priceLow:500, priceHigh:500,
+      priceNote:"Confirmed: whole-castle exclusive use from £20,000, including accommodation for the group",
+      total:"£20,000 for the castle (≈ £500pp across 40)",
+      confirmed:true,
+      food:"unclear",
+      foodNote:"Food status NOT confirmed — the £20,000 figure is the exclusive-use/wedding package rate; check whether your dinner is included or costed on top per head",
+      avail:"Enquire — exclusive use is the headline package; a single-room dinner hire (Tudor Hall) is priced separately and lower",
+      highlight:"Henry VIII actually stayed here. The £20k figure buys the whole castle and its bedrooms for the event, not just a dining room — ask about Tudor Hall alone for a lower-cost version.",
+      url:"https://www.thornburycastle.co.uk/celebrations/",
+      urlLabel:"thornburycastle.co.uk"
+    },
+    {
+      name:"Carlton Towers",
+      loc:"North Yorkshire",
+      country:"England",
+      distanceKm:330, distance:"330 km · ~3h30 by car or train",
+      cat:"rental",
+      capacity:"Sleeps 31 in 16 rooms; extra day guests for dinner arranged separately",
+      priceLow:265, priceHigh:325,
+      priceNote:"Confirmed from £7,000/night (breakfast included) + estimated dinner catering",
+      total:"≈ £10,600–£13,000 for one night, 40 covers",
+      confirmed:true,
+      food:"no",
+      foodNote:"Dinner NOT included — the nightly rate covers breakfast only; the birthday dinner itself is costed separately",
+      avail:"2–3 night minimum typical for exclusive use — enquire for a single-night exception",
+      highlight:"Victorian Gothic house on 250 acres. Best suited to a weekend where the closest ~30 friends stay over and the rest join for dinner.",
+      url:"https://www.celticcastles.com/castles/carlton-towers/",
+      urlLabel:"celticcastles.com"
+    },
+    {
+      name:"Blairquhan Castle",
+      loc:"Ayrshire, Scotland",
+      country:"Scotland",
+      distanceKm:550, distance:"550 km · flight to Prestwick + drive, or ~6h30 by car",
+      cat:"rental",
+      capacity:"Sleeps 30 (up to 79 with estate cottages)",
+      priceLow:245, priceHigh:305,
+      priceNote:"Confirmed from £6,200/night (breakfast included) + estimated dinner catering",
+      total:"≈ £9,800–£12,200 for one night, 40 covers",
+      confirmed:true,
+      food:"no",
+      foodNote:"Dinner NOT included — the nightly rate covers breakfast only; the birthday dinner itself is costed separately",
+      avail:"2-night minimum typical — enquire for October house-party dates",
+      highlight:"A 2,000-acre Ayrshire estate that can genuinely sleep close to 40 once the estate cottages are added — the rare rental where everyone can actually stay.",
+      url:"https://www.celticcastles.com/castles/blairquhan-castle/",
+      urlLabel:"celticcastles.com"
+    },
+    {
+      name:"Birkhill Castle",
+      loc:"Fife, Scotland",
+      country:"Scotland",
+      distanceKm:600, distance:"600 km · flight to Edinburgh + drive, or ~7h by car",
+      cat:"rental",
+      capacity:"Sleeps 36 in 17 rooms",
+      priceLow:326, priceHigh:386,
+      priceNote:"Confirmed from £17,000 for 2 nights (meals quoted separately)",
+      total:"≈ £13,000–£15,500 for one night's share, 40 covers",
+      confirmed:true,
+      food:"no",
+      foodNote:"Dinner NOT included — Celtic Castles states meals are quoted separately from the £17,000 rental fee",
+      avail:"2-night minimum — enquire for October availability",
+      highlight:"Overlooks the Firth of Tay and is the most far-flung option here, but also the most complete country-house-party experience for a milestone birthday.",
+      url:"https://www.celticcastles.com/castles/birkhill-castle/",
+      urlLabel:"celticcastles.com"
+    }
+  ];
+
+  const catMeta = {
+    dining:{label:"Private dinner hire", cls:"cat-dining"},
+    themed:{label:"Themed dining", cls:"cat-themed"},
+    rental:{label:"Whole-castle rental", cls:"cat-rental"}
+  };
+
+  const foodMeta = {
+    no:{icon:"🍽", label:"Food not included", cls:"food-no"},
+    yes:{icon:"🍽", label:"Food included", cls:"food-yes"},
+    partial:{icon:"🍽", label:"Food partly included", cls:"food-unclear"},
+    unclear:{icon:"🍽", label:"Food not confirmed", cls:"food-unclear"}
+  };
+
+  const grid = document.getElementById("grid");
+  const resultCount = document.getElementById("resultCount");
+  let activeFilter = "all";
+  let activeCountry = "all";
+  let activeSort = "price";
+
+  function fmtGBP(n){ return "£" + n.toLocaleString("en-GB"); }
+
+  function render(){
+    let list = venues.filter(v =>
+      (activeFilter === "all" || v.cat === activeFilter) &&
+      (activeCountry === "all" || v.country === activeCountry)
+    );
+    resultCount.textContent = list.length === venues.length
+      ? `Showing all ${venues.length}`
+      : `Showing ${list.length} of ${venues.length}`;
+    if(activeSort === "price"){ list = list.slice().sort((a,b)=>a.priceLow-b.priceLow); }
+    else if(activeSort === "distance"){ list = list.slice().sort((a,b)=>a.distanceKm-b.distanceKm); }
+    else { list = list.slice().sort((a,b)=>a.name.localeCompare(b.name)); }
+
+    grid.innerHTML = list.map(v => {
+      const meta = catMeta[v.cat];
+      const food = foodMeta[v.food];
+      const priceRange = v.priceLow === v.priceHigh
+        ? fmtGBP(v.priceLow) + "pp"
+        : fmtGBP(v.priceLow) + "–" + fmtGBP(v.priceHigh) + "pp";
+      return `
+      <article class="card">
+        <div class="card-top">
+          <div>
+            <div class="venue-name">${v.name}</div>
+            <div class="venue-loc">${v.loc}</div>
+          </div>
+          <div class="badge-stack">
+            <span class="cat-badge ${meta.cls}">${meta.label}</span>
+            <span class="food-badge ${food.cls}">${food.icon} ${food.label}</span>
+          </div>
+        </div>
+
+        <div class="kv-row">
+          <div class="kv"><div class="k">Capacity</div><div class="v">${v.capacity}</div></div>
+          <div class="kv"><div class="k">From London</div><div class="v">${v.distance}</div></div>
+        </div>
+
+        <p class="highlight">${v.highlight}</p>
+
+        <div class="price-block">
+          <div class="price-line"><span class="price-label">Per head (40 guests)</span><span class="price-val">${priceRange}</span></div>
+          <div class="price-line"><span class="price-label">Estimated total</span><span class="price-val">${v.total}</span></div>
+          <div class="price-status"><span class="dot ${v.confirmed ? 'dot-ok' : 'dot-est'}"></span>${v.priceNote}</div>
+          <div class="price-status"><span class="dot ${v.food === 'yes' ? 'dot-ok' : v.food === 'no' ? 'dot-no' : 'dot-est'}"></span>${v.foodNote}</div>
+        </div>
+
+        <a class="site-link" href="${v.url}" target="_blank" rel="noopener">🔗 ${v.urlLabel}</a>
+
+        <div class="card-foot">
+          <span class="avail">${v.avail}</span>
+          <a class="visit" href="${v.url}" target="_blank" rel="noopener">Visit site →</a>
+        </div>
+      </article>`;
+    }).join("") || `<p style="grid-column:1/-1;color:var(--text-muted);padding:24px 0;">No venues match that combination — try widening the filters.</p>`;
+  }
+
+  document.getElementById("catPills").addEventListener("click", e => {
+    const btn = e.target.closest(".pill");
+    if(!btn) return;
+    activeFilter = btn.dataset.filter;
+    document.querySelectorAll("#catPills .pill").forEach(p => p.setAttribute("aria-pressed", p === btn ? "true" : "false"));
+    render();
+  });
+
+  document.getElementById("countryPills").addEventListener("click", e => {
+    const btn = e.target.closest(".pill");
+    if(!btn) return;
+    activeCountry = btn.dataset.country;
+    document.querySelectorAll("#countryPills .pill").forEach(p => p.setAttribute("aria-pressed", p === btn ? "true" : "false"));
+    render();
+  });
+
+  document.getElementById("sortSel").addEventListener("change", e => {
+    activeSort = e.target.value;
+    render();
+  });
+
+  document.getElementById("sourceList").innerHTML = venues.map(v =>
+    `<li><a href="${v.url}" target="_blank" rel="noopener">${v.name} — ${v.urlLabel}</a></li>`
+  ).join("");
+
+  render();
+</script>
+</body>
+</html>
