@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Castle Shortlist</title>
+<title>Castles &amp; Curiosities</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
 <style>
   :root{
@@ -23,6 +23,8 @@
     --cat-themed-bg:#F3ECD9;
     --cat-rental:#3C6B4C;
     --cat-rental-bg:#E5EFE6;
+    --cat-landmark:#5B4B8A;
+    --cat-landmark-bg:#EAE6F3;
     --ok:#3C6B4C;
     --est:#9A6B14;
     --warn:#A6402B;
@@ -47,6 +49,8 @@
       --cat-themed-bg:#332A17;
       --cat-rental:#8FC49E;
       --cat-rental-bg:#1F3025;
+      --cat-landmark:#B6A6E0;
+      --cat-landmark-bg:#2A2440;
       --ok:#8FC49E;
       --est:#E0BE73;
       --warn:#E28A72;
@@ -203,6 +207,7 @@
   .cat-dining{color:var(--cat-dining);background:var(--cat-dining-bg);}
   .cat-themed{color:var(--cat-themed);background:var(--cat-themed-bg);}
   .cat-rental{color:var(--cat-rental);background:var(--cat-rental-bg);}
+  .cat-landmark{color:var(--cat-landmark);background:var(--cat-landmark-bg);}
 
   .food-badge{
     display:inline-flex;align-items:center;gap:6px;
@@ -292,12 +297,12 @@
 <div class="hero">
   <div class="hero-inner">
     <div class="eyebrow">40th birthday · dinner for 40 · October</div>
-    <h1>The Castle Shortlist</h1>
-    <p class="sub">Twelve UK castles surveyed for a 40th-birthday dinner, sized for 40 guests, any week in October. Ranges from a dry-hire hall an hour from London to a full weekend buyout in Scotland.</p>
+    <h1>Castles &amp; Curiosities</h1>
+    <p class="sub">Seventeen UK venues surveyed for a 40th-birthday dinner, sized for 40 guests, any week in October — a dozen castles, a museum vault, and four City of London halls that mean nobody has to leave town. Ranges from a livery hall in the Square Mile to a full weekend buyout in Scotland.</p>
     <div class="stat-row">
-      <div class="stat"><div class="num">12</div><div class="lbl">venues surveyed</div></div>
+      <div class="stat"><div class="num">17</div><div class="lbl">venues surveyed</div></div>
       <div class="stat"><div class="num">£100–£500</div><div class="lbl">per head, dinner only</div></div>
-      <div class="stat"><div class="num">7 counties</div><div class="lbl">England &amp; Scotland</div></div>
+      <div class="stat"><div class="num">11 regions</div><div class="lbl">England &amp; Scotland</div></div>
     </div>
   </div>
 </div>
@@ -311,6 +316,7 @@
         <button class="pill" data-filter="dining" aria-pressed="false"><span class="dot" style="background:var(--cat-dining)"></span>Private dinner hire</button>
         <button class="pill" data-filter="themed" aria-pressed="false"><span class="dot" style="background:var(--cat-themed)"></span>Themed dining</button>
         <button class="pill" data-filter="rental" aria-pressed="false"><span class="dot" style="background:var(--cat-rental)"></span>Whole-castle rental</button>
+        <button class="pill" data-filter="landmark" aria-pressed="false"><span class="dot" style="background:var(--cat-landmark)"></span>Iconic London venue</button>
       </div>
       <div class="sortwrap">
         <label for="sortSel">Sort by</label>
@@ -344,8 +350,8 @@
         <p>October sits between the summer wedding season and Christmas party bookings, so most of these venues have realistic availability for a Friday or Saturday — but castle wedding calendars fill 9–12 months out, so enquiring 6–8 weeks ahead is cutting it close for the popular weekend dates. Weekdays are far easier to secure on short notice.</p>
       </div>
       <div>
-        <h3>Two different products</h3>
-        <p>"Private dinner hire" venues rent a room or wing for an evening — you or a caterer brings the meal. "Whole-castle rental" venues are booked as a self-contained house party, usually a 2–3 night minimum, with the dinner cooked in-house for whoever is staying. Decide which one your friend actually wants before requesting quotes.</p>
+        <h3>Three different products</h3>
+        <p>"Private dinner hire" venues (including the Natural History Museum) rent a room for an evening — you or a caterer brings the meal. "Whole-castle rental" venues are booked as a self-contained house party, usually a 2–3 night minimum, with dinner cooked in-house for whoever is staying. "Themed dining" is a fixed ticketed experience with no separate room to negotiate. Decide which one your friend actually wants before requesting quotes.</p>
       </div>
       <div>
         <h3>Reading the prices</h3>
@@ -362,7 +368,7 @@
     </div>
 
     <details class="sources">
-      <summary>Sources checked (12)</summary>
+      <summary>Sources checked (17)</summary>
       <ul id="sourceList"></ul>
     </details>
   </div>
@@ -587,13 +593,104 @@
       highlight:"Overlooks the Firth of Tay and is the most far-flung option here, but also the most complete country-house-party experience for a milestone birthday.",
       url:"https://www.celticcastles.com/castles/birkhill-castle/",
       urlLabel:"celticcastles.com"
+    },
+    {
+      name:"Natural History Museum — Earth's Treasury",
+      loc:"South Kensington, London",
+      country:"England",
+      distanceKm:0, distance:"In London — no travel required",
+      cat:"landmark",
+      capacity:"Dinner: 45 · Reception: 200 — the museum's gem &amp; mineral vault gallery",
+      priceLow:370, priceHigh:475,
+      priceNote:"Confirmed venue hire £10,000 (weekend) / £11,000 (weekday), 18:00–midnight + estimated catering from the museum's approved supplier list",
+      total:"≈ £14,800–£19,000 for 40",
+      confirmed:true,
+      food:"no",
+      foodNote:"Food NOT included — dry-hire model; catering is booked separately through the museum's approved caterers (Rhubarb, Zafferano, Payne & Gunter and others)",
+      avail:"24-hour response to enquiries, then a site visit before booking — popular Saturdays get requested early",
+      highlight:"Dinner among gold nuggets, Stonehenge rock and the Museum's own 'kryptonite'. The priciest option here, but the only one that's a 20-minute Tube ride for every guest.",
+      url:"https://www.nhm.ac.uk/business-services/venue-hire/venues/earths-treasury.html",
+      urlLabel:"nhm.ac.uk"
+    },
+    {
+      name:"Stationers' Hall — Livery Hall",
+      loc:"City of London",
+      country:"England",
+      distanceKm:0, distance:"In London — no travel required",
+      cat:"landmark",
+      capacity:"Dining up to 150–205 depending on layout",
+      priceLow:156, priceHigh:263,
+      priceNote:"Confirmed venue hire from £2,640 (weekday evening) to £4,512 (Saturday) + estimated in-house catering",
+      total:"≈ £6,200–£10,500 for 40",
+      confirmed:true,
+      food:"no",
+      foodNote:"Food NOT included — hire fee is room-only; catering is in-house only (no outside caterers permitted), quoted separately",
+      avail:"Enquire directly — City livery halls also get booked for weekday corporate events, so check October dates early",
+      highlight:"A genuine 1670s Wren-era hall two minutes from St Paul's — a fraction of the museum's price for an equally grand room.",
+      url:"https://www.stationershall.co.uk/hall-hire/",
+      urlLabel:"stationershall.co.uk"
+    },
+    {
+      name:"Vintners' Hall — Livery Hall",
+      loc:"City of London",
+      country:"England",
+      distanceKm:0, distance:"In London — no travel required",
+      cat:"landmark",
+      capacity:"Dining up to 158, standing up to 250",
+      priceLow:168, priceHigh:228,
+      priceNote:"Confirmed venue hire from £3,120 (weekday evening) to £3,600 (Friday evening), per a Tagvenue listing + estimated in-house catering",
+      total:"≈ £6,700–£9,100 for 40",
+      confirmed:true,
+      food:"no",
+      foodNote:"Food NOT included — in-house catering only (no external caterers), quoted separately from the room fee",
+      avail:"Enquire directly for October dates",
+      highlight:"One of the most opulent livery halls in the City — the Vintners' own wine cellar theme is a nice fit for a milestone dinner.",
+      url:"https://www.vintnershall.co.uk/our-hall",
+      urlLabel:"vintnershall.co.uk"
+    },
+    {
+      name:"Plaisterers' Hall — Livery Hall",
+      loc:"City of London",
+      country:"England",
+      distanceKm:0, distance:"In London — no travel required",
+      cat:"landmark",
+      capacity:"Dining up to 70 in the Livery Hall (larger halls on site go up to 220 standing)",
+      priceLow:150, priceHigh:190,
+      priceNote:"Confirmed: catered packages from £150pp (rate shown is based on 250 guests — expect a modest premium at 40), or £8,000+VAT for dry hire alone",
+      total:"≈ £6,000–£7,600 for 40 on the catered package",
+      confirmed:true,
+      food:"yes",
+      foodNote:"Food CAN be included — their catered package (from £150pp) bundles room and food; dry hire (£8,000+VAT) is room-only if you'd rather source your own caterer",
+      avail:"Enquire directly for October dates",
+      highlight:"The most ornate of the livery halls here — gold leaf and a huge shallow dome — and the only one quoting a simple all-in per-head price.",
+      url:"https://www.plaisterershall.com/corporate-events-london-venue-private-hire/",
+      urlLabel:"plaisterershall.com"
+    },
+    {
+      name:"Two Temple Place",
+      loc:"Victoria Embankment, London",
+      country:"England",
+      distanceKm:0, distance:"In London — no travel required",
+      cat:"landmark",
+      capacity:"Dinners for up to 120 guests; smaller rooms seat 30–90",
+      priceLow:300, priceHigh:300,
+      priceNote:"Confirmed: dinners for up to 120 guests from £10,000 + VAT (6pm–11pm) — a flat rate regardless of guest count",
+      total:"£12,000 (inc. VAT) for 40 — the same flat rate as for up to 120 guests",
+      confirmed:true,
+      food:"unclear",
+      foodNote:"Food status NOT fully confirmed — quoted as a 'dinners from £10,000' price, which suggests catering is bundled in, but this isn't stated outright; verify before budgeting",
+      avail:"Evening hire runs May–December only",
+      highlight:"A jaw-dropping neo-Gothic mansion on the Thames, built for a Victorian millionaire. Flat-rate pricing means 40 guests costs the same as 120 — you're paying for the building, not the headcount.",
+      url:"https://twotempleplace.org/venue-hire/private-dining/",
+      urlLabel:"twotempleplace.org"
     }
   ];
 
   const catMeta = {
     dining:{label:"Private dinner hire", cls:"cat-dining"},
     themed:{label:"Themed dining", cls:"cat-themed"},
-    rental:{label:"Whole-castle rental", cls:"cat-rental"}
+    rental:{label:"Whole-castle rental", cls:"cat-rental"},
+    landmark:{label:"Iconic London venue", cls:"cat-landmark"}
   };
 
   const foodMeta = {
